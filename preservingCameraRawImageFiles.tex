@@ -1,0 +1,113 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{gentium}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathptmx} % Use Times Font
+
+\usepackage[pdftex]{graphicx} % Required for including pictures
+\usepackage[english]{babel} % Swedish translations
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage{calc} % To reset the counter in the document after title page
+\usepackage{enumitem} % Includes lists
+
+\frenchspacing % No double spacing between sentences
+\linespread{1.2} % Set linespace
+\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
+%\usepackage{parskip}
+
+\usepackage{booktabs}
+\usepackage[table,xcdraw]{xcolor}
+
+\usepackage[all]{nowidow} % Tries to remove widows
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+%\usepackage[hybrid]{markdown}
+\usepackage[footnotes,definitionLists,hashEnumerators,smartEllipses, hybrid]{markdown}
+
+
+%-----------------------
+% Set pdf information and add title, fill in the fields
+%-----------------------
+\hypersetup{ 	
+pdfsubject = {},
+pdftitle = {},
+pdfauthor = {}
+}
+
+%-----------------------
+% Begin document
+%-----------------------
+
+\begin{document}
+\title{Preserving Camera Raw Image Files}
+\author{Bill Comstock\\
+Harvard Library}
+\date{April 2016}
+
+\maketitle
+
+\section{What is a Camera Raw image file?}
+If you aren’t quite sure what a “Camera Raw” (CR) file is there are plenty of places online to find  descriptions. Here is a definition from Bruce Fraser\footnote{Fraser, Bruce. 2004. Real World Camera Raw with Adobe Photoshop CS. Berkeley, CA: Peachpit Press, p. 2.}:
+
+\begin{quote}Fundamentally, a digital raw file is a record of the raw sensor data from the camera, accompanied by some camera-generated metadata [...].
+
+Different camera vendors may encode the raw data in different ways, apply various compression strategies, and in some cases even apply encryption, so it’s important to realize that the “digital camera raw” isn’t a single file format. Rather it is a catch-all term that encompasses Canon .CRW, Minolta .MRW [... and] other raw formats.\end{quote}
+
+Most, but not all, CR formats are based on (but are not, in most cases, compliant with) the TIFF/EP \footnote{ISO 12234-2:2001 Electronic still-picture imaging -- Removable memory -- Part 2: TIFF/EP image data format.} standard. “Adobe, Canon, Epson, Kodak, Nikon, Pentax and Sony use TIFF/EP as the basis for their camera raw formats, but [are] not fully utilizing the standard TIFF/EP camera raw support tags and are instead using proprietary tags.\footnote{Jack Holm, consultancy report for Harvard Library, “Raster Still Images -- TIFF Image File Format -- Categorization/Functionality”, delivered 22 June 2015, p.7.}”
+
+\section{Rationale for preserving CR images files}
+In the vast majority of cases, cultural heritage collections are digitized (via photography or scanning) with the goal of faithfully recording the appearance of the original item. The process is typically not designed to make images that look better or different than the original.
+
+There are, however, cases where interpretation and aesthetic judgments are appropriately brought to bear in the digitization of cultural heritage materials. Here are three common cases:
+\subsection{Photographic negatives:}
+Negatives were never meant to be viewed as is; the negatives are intended to be processed (ideally, interpreted by a skilled photographer) to produce an appealing, positive-tonality image.
+
+\subsection{Color transparencies:}
+Over time color transparencies fade and coloring shifts, and it is often desirable to adjust the image color as part of the digitization process.
+
+\subsection{Fine art reproduction:}
+In cases where tone- and color-fidelity to an original piece are deemed critical, images may require careful editing and color matching; these “matches” typically target a specific “viewing condition” where the color spectrum of the light source that illuminates the reproduction is considered and compensated for in the editing process.
+
+In the above cases it would be highly desirable to save digital images in a format that permits the original image-capture data to be re-interpreted in the future. This would allow one to perform new edits using the original sensor-data to create a new rendering of the image, one informed by a different set of skills, different aesthetic preferences, or a new, specialized set of requirements (e.g., edits tuned for a specific publication, or exhibit, or to reveal detail not clearly visible in a more aesthetically “correct” rendering of the image).
+
+CR images preserve the unprocessed (or minimally processed) sensor data from the original image capture. All editing prescriptions are recorded in the file’s internal metadata and are therefore reversible and adjustable because the original image-data collected by the camera sensor is never changed during editing.
+
+\section{CR images are not intended for human consumption}
+It is important to understand that CR images are not intended for direct consumption: one doesn’t send a “raw” format image to a web browser for online viewing, or directly off to a printer. Instead, a CR image is used to generate a new, “output-referred” image file that reflects the current editing prescriptions recorded within the file metadata to produce an image processed for a specific viewing condition, or for a particular printing process. This is why Adobe calls their CR format, “Digital Negative”, because, like a film negative, the digital negative may be returned to again and again to generate new digital “prints”: finished images for on-screen viewing, or specially processed for printing.
+
+\section{Camera Raw images and Adobe’s DNG format}
+The majority -- nearly all -- Camera Raw\footnote{“When we refer here to camera "raw" images, we are referring to Color Filter Array (CFA) images rather than Camera RGB images.” Jack Holm, consultancy report for Harvard Library, “Raster Still Images -- TIFF Image File Format -- Categorization/Functionality”, delivered 22 June 2015, p.2.
+} image formats are camera-manufacturer-specific, and a single camera manufacturer may have developed multiple “raw” formats at different times and for different products\footnote{As of February 2016, Adobe DNG Converter supports 622 camera “raw” format variations from 22 manufacturers, including 86 varieties from Canon, 69 from Nikon, and 65 from Sony.}.
+
+Most CR images can be converted to Adobe’s Digital Negative (DNG) format using utilities like Adobe’s \hyperlink{https://web.archive.org/web/20160323103742/https://helpx.adobe.com/photoshop/using/adobe-dng-converter.html}{DNG Converter}. Unlike CR image formats developed by camera manufacturers, Adobe professes it’s Digital Negative (DNG) format to be an “archival format for the raw files generated by digital cameras. By addressing the lack of an open standard for the raw files created by individual camera models, DNG helps ensure that photographers will be able to access their files in the future.”
+
+\section{Preserving Camera Raw images: Comparing sustainability factors}
+In weighing the benefits of preserving access to CR images against the feasibility of preserving a (potentially) wide variety of CR formats, the Library of Congress’s digital-information format sustainability factors\footnote{National Digital Information Infrastructure and Preservation Program, Library of Congress. “ Sustainability of Digital Formats”. http://www.digitalpreservation.gov/formats/sustain/sustain.shtml (accessed February 29, 2016).} were applied to compare camera-manufacturer “raw” formats to Adobe’s DNG format:
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\begin{tabular}{|
+>{\columncolor[HTML]{EFEFEF}}l |l|l|}
+\hline
+ & \cellcolor[HTML]{EFEFEF}\textbf{Equipment-manufacturer Camera Raw Formats} & \cellcolor[HTML]{EFEFEF}\textbf{Adobe Digital Negative (DNG)} \\ \hline
+Disclosure & There is very little disclosure of raw format specifications by manufacturers and this is a contentious issue for some photographers; see, for example, Michael Reichmann and Juergen Specht's The Raw Flaw (2005). & \begin{tabular}[c]{@{}l@{}}Fully documented. Developed by Adobe Systems, Inc.\\ \\ {[}While the Adobe DNG format has a public specification, the specification is incomplete in a number of areas.{]}\end{tabular} \\ \hline
+Documentation & Undocumented & Digital Negative (DNG) Specification, version 1.1.0.0 (February 2005). Note that this version is from the Internet Archive; when consulted in February 2014, Adobe's own site offered access to version 1.4.0.0, with version 1.3.0.0 discoverable by a search. \\ \hline
+Adoption & Varied, depends upon the extent of use of specific cameras. Several of the camera brands listed by Adobe are very popular. & \begin{tabular}[c]{@{}l@{}}The breadth and depth of support is outlined in the Wikipedia Digital Negative article. Adobe's DNG converter applications add support for proprietary camera formats on a regular basis. Barry Pearson's DNG products Web page ("frozen" as of the end-of-2005 update) lists 77 non-Adobe products that support DNG.\\ \\ “Wide adoption by professional and advanced amateur photographers, but limited adoption by consumers and photo-hobbyists. Typically, the camera raw files written by the camera are archived. Conversion to DNG is employed when compatibility issues are encountered. Development continuing.”\end{tabular} \\ \hline
+Licensing and patents & Not investigated at this time. & Adobe statement consulted in February 2012: "Adobe provides the DNG Specification to the public for the purpose of encouraging implementation of this file format in a compliant manner. This {[}Web page{]} is a patent license granted by Adobe to individuals and organizations that desire to develop, market and/or distribute hardware and software that reads and/or writes image files compliant with the DNG Specification." \\ \hline
+Transparency & \begin{tabular}[c]{@{}l@{}}All raw formats require special software to convert them into usable images. Some raw formats are exported from the camera in a compressed mode.\\ \\ “No specifications for most camera raw file types, {[}and{]} no reader specifications or requirements”\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wrapper is transparent; encoded image bitstream may require tools to render.\\ \\ While the DNG CR encoding “currently comes the closest to being publicly specified {[}it is only a{]} partial specification {[}and does not include{]} reader specification requirements.”\end{tabular} \\ \hline
+Self-documentation & Most formats include metadata, both for the interpretation of the data (e.g., about white balance) and to provide the types of additional information specified by EXIF\_2\_2. Professionals in the field report, however, that raw files do not support the widely used IPTC structure for descriptive metadata, or do so in a non-standard and imperfect way. & \begin{tabular}[c]{@{}l@{}}See Tags for TIFF and Related Specifications. Metadata may be embedded in a DNG file using tags from (1) TIFF\_6, (2) TIFF/EP or EXIF\_2\_2 (see also TIFF\_UNC\_EXIF), (3) IPTC (TIFF tag 33723), and (4) XMP (TIFF tag 700).\\ \\ Regarding TIFF/EP and EXIF, the DNG specification states that TIFF/EP stores the tags in IFD 0 (IFD stands for Image File Directories, in effect segments of a TIFF file), while TIFF\_UNC\_EXIF stores them in a separate IFD. Either location is allowed but the EXIF location is preferred. Proprietary metadata that may be used by camera manufacturer's raw convertors is to placed under private tags, in private IFDs, and/or a private MakerNote. (pp. 12-13)\end{tabular} \\ \hline
+External dependencies & None & None \\ \hline
+Technical protection considerations & Not investigated at this time. & None \\ \hline
+\end{tabular}
+\end{table}
+
+Our conclusions, based primarily on the preceding format sustainability analysis, are that both camera-manufacturer CR formats and Adobe’s DNG format are too poorly documented and proprietary to be exclusively relied on for preservation. However, the editing latitude afforded by these formats suggest that they are worth preserving, in some cases, provided that CR/DNG files are retained in combination with highly-sustainable TIFF or JPEG2000 format versions of the same images.
+
+\end{document}
